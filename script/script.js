@@ -53,7 +53,7 @@ class Debit extends Bank_card{
     }
     render(){
         this.div.classList.add("credit");
-        this.div.innerHTML = '<div>Кредитная карта</div><div class="img" style="background-image:url('+this.array[0]+')"></div><div><div>Номер карты</div><div>'+this.array[1]+'</div></div><div><div>Действует до</div><div>'+this.array[2]+' г.</div></div><div><div>Остаток на счету</div><div>'+this.array[3]+'  руб.</div></div><div><div>Бонусные балы</div><div>'+this.array[4]+'</div></div>';
+        this.div.innerHTML = '<div>Дебеторская карта</div><div class="img" style="background-image:url('+this.array[0]+')"></div><div><div>Номер карты</div><div>'+this.array[1]+'</div></div><div><div>Действует до</div><div>'+this.array[2]+' г.</div></div><div><div>Остаток на счету</div><div>'+this.array[3]+'  руб.</div></div><div><div>Бонусные балы</div><div>'+this.array[4]+'</div></div>';
         document.querySelector(".bank_card").appendChild(this.div);
     }
 }
@@ -73,7 +73,7 @@ function ajaxrequest(url){
             for(val in resText){
                 if (val == 'Credit'){
                     for(let i = 0; i<resText['Credit'].length; i++){
-                      console.log('Дебиторская карта')
+                      console.log('Кредитная карта')
                       console.log(resText['Credit'][i])
                       let card = new Credit(resText['Credit'][i]);
                       card.render();
