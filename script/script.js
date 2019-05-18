@@ -58,6 +58,18 @@ class Debit extends Bank_card{
     }
 }
 
+class Paginator{
+    constructor(){
+        this.div = document.createElement('div')
+    }
+    render(){
+        let wrapper = document.querySelector(".wrapper");
+        this.div.classList.add('paginator')
+        this.div.innerHTML = '<a class="current" href="#">1</a><a class="current" href="#">2</a>'
+        wrapper.appendChild(this.div)
+    }
+}
+
 
 function ajaxrequest(url){
     const xhr = new XMLHttpRequest();
@@ -81,7 +93,7 @@ function ajaxrequest(url){
                     }
                     
                 if (val=='Debit'){
-                    for(let i = 0; i<resText['Credit'].length; i++){
+                    for(let i = 0; i<resText['Debit'].length; i++){
                         console.log('Дебеторская картаа')
                         console.log(resText['Debit'][i])
                         let card = new Debit(resText['Debit'][i]);
@@ -102,6 +114,31 @@ window.onload = function(){
     card.render();
 
     ajaxrequest('json.php');
+    
+    const paginator = new Paginator();
+    paginator.render();
+
+    let buttonPaginator =  document.querySelectorAll(".current");
+    buttonPaginator.forEach((elem)=>{
+        elem.addEventListener('click', function(e){
+            e.preventDefault();
+            console.log(this.text)
+            if (this.text == 2){
+                document.querySelector(".wrapper").innerHTML = "";
+                card.render();
+                ajaxrequest('json2.php');
+                paginator.render();
+            }
+            if (this.text == 1){
+                document.querySelector(".wrapper").innerHTML = "";
+                card.render();
+                ajaxrequest('json.php');
+                paginator.render();
+            }
+
+        })
+    })
+   
     
 }
 

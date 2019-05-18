@@ -8,5 +8,5 @@
 <body>
     
 </body>
-<script async src="script/script.js"></script>
+<script async src="script/script.js?ver=1"></script>
 </html>
