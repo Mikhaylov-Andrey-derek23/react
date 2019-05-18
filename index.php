@@ -7,7 +7,5 @@
 <body>
     
 </body>
-<?php
-    include 'script.php';
-?>
+<script src="script/script.js"></script>
 </html>

@@ -42,7 +42,7 @@ xhr.onreadystatechange = function(){
         console.log(resText);
         for(let val in resText){
             console.log(val)
-            console.log(resText[val][0)
+            console.log(resText[val][0])
         }
     }
 }
