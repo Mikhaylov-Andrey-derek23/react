@@ -1,11 +1,12 @@
 <?php
     $json = array(
             "Credit" => array(
-                array('1234', '05.07', 565.00)
+                array('img/credit-card.png','1234', '05.19', -25565.00, 70000),
+                array('img/credit-card2.png', '5324', '09.21', 1565.00, 50000)
                 
             ),
             'Debit' => array(
-                array('4321', '05.07', -300.00, 50000)
+                array('img/credit-card3.jpg','4321', '05.22', 300.00, 250)
                 
             )
         );

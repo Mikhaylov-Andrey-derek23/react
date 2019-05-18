@@ -1,0 +1,36 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+.wrapper{
+    margin: 20px auto;
+    height: 100vh;
+    max-width: 1200px;
+    background-color: #e5e9ef;
+
+    h2{
+        text-transform: uppercase;
+        text-align: center;
+        padding: 10px 0;
+    }
+    .bank_card{
+        width: 90%;
+        margin: 0 auto;
+    }
+    .credit{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        div{
+            text-align: center;
+        }
+
+
+    }
+    .img{
+        width: 200px;
+        height: 100px;
+        background-size: cover;
+    }
+}

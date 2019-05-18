@@ -1,54 +1,107 @@
-console.log("Helloy world!")
-const body = document.querySelector("body");
+let bodu = document.querySelector('body');
+class Wrapper{
+    constructor(){
+        this.div = document.createElement("div");
 
-class Test1{
-    constructor(name, adg){
-        this.name = name;
-        this.adg = adg;    
-        this.div = document.createElement("div")
-        
     }
-    sainName(){
-        this.div.classList.add("test");
-        this.div.innerHTML = "<p> this name = "+this.name+" adg = "+this.adg+"</p>";
-        body.appendChild(this.div)
+    render(){
+        this.div.classList.add("wrapper")
+        bodu.appendChild(this.div)
+    }
+
+}
+
+class Card {
+    constructor(){
+        this.div = document.createElement("div");
+    }
+    render(){
+        let wrapper = document.querySelector(".wrapper");
+        this.div.classList.add("bank_card")
+        this.div.innerHTML = "<h2>Банковские карты:</h2>"
+        wrapper.appendChild(this.div)
     }
 }
-class Child extends Test1{
-    constructor(name, adg, child){
-        super(name, adg)
-        this.child = child;
+
+class Bank_card {
+    constructor (array){
+        this.array = array;
+        this.div = document.createElement("div");
     }
-    sainName(){
-        super.sainName();
-        this.div.innerHTML = "<p> this name = "+this.name+" adg = "+this.adg+" child = "+this.child+"</p>";
-        this.div.classList.remove("test");
-        this.div.classList.add("Child_test");
+    render(){
+        this.div.classList.add("card");
+        this.div.innerHTML = '<div>'+this.array[0]+"</div>";
+        document.querySelector(".bank_card").appendChild(this.div);
     }
 }
-let a1 = new Test1('Vasya', 21);
-let a2 = new Test1("Peter", 45);
-const a3 = new Child("May", 32, 'pbgh1m1')
 
-const xhr = new XMLHttpRequest(); 
-xhr.open('GET', 'json.php', true);
-xhr.send();
-xhr.onreadystatechange = function(){
-    if(xhr.readyState != 4) return;
-    if (xhr.status != 200){
-        console.log("alert")
-    }else{
-        const resText = JSON.parse(xhr.responseText);
-        console.log(resText);
-        for(let val in resText){
-            console.log(val)
-            console.log(resText[val][0])
+class Credit extends Bank_card{
+    constructor(array){
+        super(array)
+        this.div = document.createElement("div");
+    }
+    render(){
+        this.div.classList.add("credit");
+        this.div.innerHTML = '<div>Кредитная карта</div><div class="img" style="background-image:url('+this.array[0]+')"></div><div><div>Номер карты</div><div>'+this.array[1]+'</div></div><div><div>Действует до</div><div>'+this.array[2]+' г.</div></div><div><div>Остаток на счету</div><div>'+this.array[3]+'  руб.</div></div><div><div>Кредитный лимит</div><div>'+this.array[4]+' руб.</div></div>';
+        document.querySelector(".bank_card").appendChild(this.div);
+    }
+}
+class Debit extends Bank_card{
+    constructor(array){
+        super(array)
+        this.div = document.createElement("div");
+    }
+    render(){
+        this.div.classList.add("credit");
+        this.div.innerHTML = '<div>Кредитная карта</div><div class="img" style="background-image:url('+this.array[0]+')"></div><div><div>Номер карты</div><div>'+this.array[1]+'</div></div><div><div>Действует до</div><div>'+this.array[2]+' г.</div></div><div><div>Остаток на счету</div><div>'+this.array[3]+'  руб.</div></div><div><div>Бонусные балы</div><div>'+this.array[4]+'</div></div>';
+        document.querySelector(".bank_card").appendChild(this.div);
+    }
+}
+
+
+function ajaxrequest(url){
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', url, true );
+    xhr.send();
+    xhr.onreadystatechange = function(){
+        if (xhr.readyState != 4) return;
+        if (xhr.status != 200){
+            console.log("alert")
+        }else{
+            const resText = JSON.parse(xhr.responseText);
+            console.log(resText)
+            for(val in resText){
+                if (val == 'Credit'){
+                    for(let i = 0; i<resText['Credit'].length; i++){
+                      console.log('Кредитная карта')
+                      console.log(resText['Credit'][i])
+                      let card = new Credit(resText['Credit'][i]);
+                      card.render();
+                }
+                    }
+                    
+                if (val=='Debit'){
+                    for(let i = 0; i<resText['Credit'].length; i++){
+                        console.log('Дебеторская картаа')
+                        console.log(resText['Debit'][i])
+                        let card = new Debit(resText['Debit'][i]);
+                        card.render();
+                  }
+                }
+            }
         }
     }
 }
 
-a2.sainName();
-a1.sainName();
-a3.sainName();
-console.log(a1)
+window.onload = function(){
+
+    const wrapper = new Wrapper();
+    wrapper.render();
+
+    const card = new Card();
+    card.render();
+
+    ajaxrequest('json.php');
+    
+}
 
