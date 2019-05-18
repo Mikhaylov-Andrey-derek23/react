@@ -22,15 +22,22 @@
         justify-content: space-between;
         align-items: center;
         margin-bottom: 20px;
-        div{
-            text-align: center;
-        }
-
-
     }
     .img{
         width: 200px;
         height: 100px;
         background-size: cover;
+    }
+    div{
+        text-align: center;
+    }
+    .name{
+        width: 100px;
+    }
+    .debit{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
     }
 }
