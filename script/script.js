@@ -73,7 +73,7 @@ function ajaxrequest(url){
             for(val in resText){
                 if (val == 'Credit'){
                     for(let i = 0; i<resText['Credit'].length; i++){
-                      console.log('Кредитная карта')
+                      console.log('Дебиторская карта')
                       console.log(resText['Credit'][i])
                       let card = new Credit(resText['Credit'][i]);
                       card.render();
