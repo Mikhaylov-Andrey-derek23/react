@@ -81,12 +81,9 @@ function ajaxrequest(url){
             console.log("alert")
         }else{
             const resText = JSON.parse(xhr.responseText);
-            console.log(resText)
             for(val in resText){
                 if (val == 'Credit'){
                     for(let i = 0; i<resText['Credit'].length; i++){
-                      console.log('Кредитная карта')
-                      console.log(resText['Credit'][i])
                       let card = new Credit(resText['Credit'][i]);
                       card.render();
                 }
@@ -94,8 +91,6 @@ function ajaxrequest(url){
                     
                 if (val=='Debit'){
                     for(let i = 0; i<resText['Debit'].length; i++){
-                        console.log('Дебеторская картаа')
-                        console.log(resText['Debit'][i])
                         let card = new Debit(resText['Debit'][i]);
                         card.render();
                   }
@@ -128,6 +123,7 @@ window.onload = function(){
                 card.render();
                 ajaxrequest('json2.php');
                 paginator.render();
+                
             }
             if (this.text == 1){
                 document.querySelector(".wrapper").innerHTML = "";
