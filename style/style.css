@@ -84,6 +84,6 @@
 }
 
 .wrapper .paginator a:hover {
-  background-color: #f30d0d;
+  background-color: #f30d0d !important;
 }
 /*# sourceMappingURL=style.css.map */
