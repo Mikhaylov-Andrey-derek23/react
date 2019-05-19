@@ -65,7 +65,7 @@ class Paginator{
     render(){
         let wrapper = document.querySelector(".wrapper");
         this.div.classList.add('paginator')
-        this.div.innerHTML = '<a class="current" href="#">1</a><a class="current" href="#">2</a>'
+        this.div.innerHTML = '<a class="current activ" href="#" style="background-color: #f30d0d;">1</a><a class="current" href="#">2</a>'
         wrapper.appendChild(this.div)
     }
 }
@@ -119,17 +119,24 @@ window.onload = function(){
             e.preventDefault();
             console.log(this.text)
             if (this.text == 2){
-                document.querySelector(".wrapper").innerHTML = "";
-                card.render();
+                document.querySelector(".bank_card").innerHTML="<h2>Банковские карты:</h2>";
                 ajaxrequest('json2.php');
-                paginator.render();
-                
+                buttonPaginator.forEach((elem)=>{
+                    elem.style.backgroundColor = "#ffacac";
+                    if(elem.text == 2){
+                        elem.style.backgroundColor = "#f30d0d";
+                    }
+                })
             }
             if (this.text == 1){
-                document.querySelector(".wrapper").innerHTML = "";
-                card.render();
+                document.querySelector(".bank_card").innerHTML="<h2>Банковские карты:</h2>";
                 ajaxrequest('json.php');
-                paginator.render();
+                buttonPaginator.forEach((elem)=>{
+                    elem.style.backgroundColor = "#ffacac";
+                    if(elem.text == 1){
+                        elem.style.backgroundColor = "#f30d0d";
+                    }
+                })
             }
 
         })
