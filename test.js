@@ -107,7 +107,15 @@ class Credit extends React.Component{
                 <div>{this.props.creditImg}</div>
                 <div>{this.props.creditNumber}</div>
                 <div>{this.props.creditData}</div>
+                <Balanas balans={this.props.creditB}/>
             </div>
+        )
+    }
+}
+class Balanas extends React.Component{
+    render(){
+        return(
+            <div>{this.props.balans}</div>
         )
     }
 }
@@ -118,6 +126,7 @@ class Depozit extends React.Component{
                 <div>{this.props.depozitImg}</div>
                 <div>{this.props.depozitNumber}</div>
                 <div>{this.props.depozitData}</div>
+                <Balanas balans={this.props.depozitB}/>
             </div>
         )
     }
@@ -129,8 +138,8 @@ class BankCard extends React.Component{
     render(){
         return(
             <div className="Wrapper">
-            <Credit creditImg={'Credit'} creditNumber={'1234'} creditData={'21.21'}/>
-            <Depozit depozitImg={'Depozit'} depozitNumber={'4321'} depozitData={'21.21'}/>       
+            <Credit creditImg={'Credit'} creditNumber={'1234'} creditData={'21.21'} creditB={-222}/>
+            <Depozit depozitImg={'Depozit'} depozitNumber={'4321'} depozitData={'21.21'} depozitB={5646}/>  
             </div>
         )
     }
