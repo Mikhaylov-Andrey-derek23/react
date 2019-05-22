@@ -1,39 +1,139 @@
-console.log('test');
-let name = "Andrey";
-console.log(name);
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-const personal = {
-    name : "IGOR",
-    age : 21,
-    color : "red"
+class Price extends React.Component{
+    render(){
+        return(
+            <button>{this.props.price}</button>
+        )
+    }
 }
-console.log(personal)
 
-personal.name = "Ivan";
-console.log(personal);
+class Cours extends React.Component{
+    render(){
+        return(
+            <div className='course-item'>
+            <h2>{this.props.courseName}</h2>
+            <p><Price price={this.props.coursePrice}/></p>
+            </div>
+            
+        )
+        
+    }
+}
+class Counter extends React.Component{
+    render(){
+        return (
+            <div>{this.props.num}</div>
+        )
+    }
+}
 
-const btn = document.querySelector(".btn");
-btn.addEventListener('click', function(){
-    setTimeout(() =>{
-        this.style.display = "None";
+class Nordic extends React.Component{
+    constructor(props){
+        super(props)
+        this.state= {
+            num : 0, 
+            cours : [
+                {
+                    name : 'React',
+                    price : 19000
+                },
+                {
+                    name: 'Java',
+                    price: 17900 
+                }
+            ]
+        }
+    }
 
-        setTimeout(() => {
-            this.style.display = "block"
+    renderCours2(){
+        this.state.cours.forEach((elem)=>{
+            return(
+                console.log(elem.name, elem.price)
+            )
+        })
+    }
+
+    renderCours(name, price){
+        return (
+            <Cours courseName={name} coursePrice={price}/>
+
+        )
+    }
+    
+
+    countChange(){
+    
+            this.setState({num: this.state.num + 1});
+    
+    }
+
+    countChange2(){
+    
+        this.setState({num: this.state.num -1});
+
+    }
+    handlerClick(){
+        console.log('click');
+    }
+    color(){
+        setTimeout(()=>{
+            document.querySelector("body").style.backgroundColor = 'red';
         }, 300)
-    }, 300)
-});
-const player1 = {name: "Ivan"};
+        
+    }
+    render(){
+        return (
+            <div className='wrapper'>
+                <div className='nordic'>Hello, word!</div>
+                <button onClick={()=>{this.handlerClick()}}>Click me!</button>
+                <button onClick={()=>{this.color()}}>Click color</button>
+                <div className='course.box'>{this.renderCours('React', ' 200 руб.')}
+                <Cours courseName={'Веб разработка'} coursePrice={'100 руб.'}/>
+                </div>
+                <Counter num={this.state.num}/>
+               <button onClick = {()=>this.countChange()}>+ Click</button>
+               <button onClick = {()=>this.countChange2()}>- Click</button>
+               <div>{this.renderCours2()}</div>
+            </div>
+        )
+    }
+}
+class Credit extends React.Component{
+    render(){
+        return(
+            <div>
+                <div>{this.props.creditImg}</div>
+                <div>{this.props.creditNumber}</div>
+                <div>{this.props.creditData}</div>
+            </div>
+        )
+    }
+}
+class Depozit extends React.Component{
+    render(){
+        return(
+            <div>
+                <div>{this.props.depozitImg}</div>
+                <div>{this.props.depozitNumber}</div>
+                <div>{this.props.depozitData}</div>
+            </div>
+        )
+    }
+}
 
-playerPoints = new Map();
+class BankCard extends React.Component{
 
-playerPoints.set(player1, 10);
-console.log(playerPoints.get(player1));
-playerPoints.set(player1,910);
-console.log(playerPoints.get(player1));
 
-const plaers = new Set();
+    render(){
+        return(
+            <div className="Wrapper">
+            <Credit creditImg={'Credit'} creditNumber={'1234'} creditData={'21.21'}/>
+            <Depozit depozitImg={'Depozit'} depozitNumber={'4321'} depozitData={'21.21'}/>       
+            </div>
+        )
+    }
+}
 
-plaers.add("34");
-console.log(plaers);
-plaers.add(34);
-console.log(plaers);
+ReactDOM.render(<BankCard />, document.getElementById('root'));
